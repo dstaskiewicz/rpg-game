@@ -11,7 +11,7 @@ public:
 
 	void initialize();
 	void load();
-	void update(Skeleton& skeleton);
+	void update(Skeleton& skeleton, float deltaTime);
 	void draw(sf::RenderWindow& window);
 
 	
@@ -20,11 +20,12 @@ public:
 private:
 
 	sf::Texture m_texture;
-	std::vector<sf::RectangleShape> bullets;
-	float m_moveSpeed{1.f};
+	sf::RectangleShape m_outline;
+	float m_moveSpeed;
+	sf::Vector2i m_size;
 
-
-	float bulletSpeed = 0.5f;
-	sf::Vector2f bulletDirection;
+	std::vector<sf::RectangleShape> m_bullets;
+	float m_bulletSpeed;
+	sf::Vector2f m_bulletDirection;
 };
 

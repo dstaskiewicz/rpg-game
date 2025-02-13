@@ -4,5 +4,6 @@ class Math
 {
 public:
 	static sf::Vector2f normalizeVector(sf::Vector2f vector);
+	static bool didRectsCollide(sf::FloatRect first, sf::FloatRect second);
 };
 

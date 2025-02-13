@@ -9,3 +9,8 @@ sf::Vector2f Math::normalizeVector(sf::Vector2f vector)
 
 	return normalizedVector;
 }
+
+bool Math::didRectsCollide(sf::FloatRect first, sf::FloatRect second)
+{
+	return first.findIntersection(second) ? true : false;
+}
