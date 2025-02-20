@@ -34,6 +34,9 @@ int main()
 	sf::Clock clock;
 	sf::Time deltaTime;
 
+	sf::Vector2i mousePosition; 
+	float deltaTimeAsMs;
+
 
 
 	// ---------------------------------- INITIALIZE --------------------------------------
@@ -62,10 +65,10 @@ int main()
 			if (event->is<sf::Event::Closed>())
 				window.close();
 		}
-
-		float deltaTimeAsMs = deltaTime.asMilliseconds();
+		mousePosition = sf::Mouse::getPosition(window);
+		deltaTimeAsMs = deltaTime.asMilliseconds();
 		skeleton.update(deltaTimeAsMs);
-		player.update(skeleton, deltaTimeAsMs);
+		player.update(skeleton, deltaTimeAsMs, mousePosition);
 		stats.update(deltaTime.asMicroseconds());
 
 		// close with Escape

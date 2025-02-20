@@ -1,6 +1,8 @@
 #include "Stats.h"
 
-Stats::Stats() : m_framerateText(m_framerateFont), m_framerateTimer{0.0f}
+Stats::Stats() : 
+	m_framerateText{m_framerateFont}, 
+	m_framerateTimer{0.0f}
 {
 }
 

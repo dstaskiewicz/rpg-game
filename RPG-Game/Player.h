@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Skeleton.h"
 #include "Math.h"
+#include "Bullet.h"
 
 class Player
 {
@@ -12,7 +13,7 @@ public:
 
 	void initialize();
 	void load();
-	void update(Skeleton& skeleton, float deltaTime);
+	void update(Skeleton& skeleton, float deltaTime, sf::Vector2i& mousePosition);
 	void draw(sf::RenderWindow& window);
 
 	
@@ -25,8 +26,9 @@ private:
 	float m_moveSpeed;
 	sf::Vector2i m_size;
 
-	std::vector<sf::RectangleShape> m_bullets;
-	float m_bulletSpeed;
-	sf::Vector2f m_bulletDirection;
+	std::vector<Bullet> m_bullets;
+	float m_bulletFireRateTimer;
+	float m_bulletFireRate;
+	
 };
 

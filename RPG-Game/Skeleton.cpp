@@ -1,6 +1,9 @@
 #include "Skeleton.h"
 
-Skeleton::Skeleton() : m_sprite(m_texture) 
+Skeleton::Skeleton() : 
+	m_sprite(m_texture), 
+	m_health{ 100 }, 
+	m_healthText{m_healthFont}
 {
 }
 
@@ -20,6 +23,16 @@ void Skeleton::initialize()
 
 void Skeleton::load()
 {
+
+	if (m_healthFont.openFromFile("assets/fonts/arial.ttf"))
+	{	  
+		m_healthText.setFont(m_healthFont);
+		m_healthText.setString(std::to_string(m_health));
+		std::cout << "health font loaded successfully" << std::endl;
+	}
+	else
+		std::cout << "failed loading health font" << std::endl;
+
 	if (m_texture.loadFromFile("assets/skeleton/textures/spritesheet.png"))
 	{
 		std::cout << "skeleton texture loaded" << std::endl;
@@ -37,14 +50,28 @@ void Skeleton::load()
 
 	m_outline.setSize({ m_size.x * m_sprite.getScale().x, m_size.y * m_sprite.getScale().y });
 	m_outline.setPosition(m_sprite.getPosition());
+	m_healthText.setPosition(m_sprite.getPosition());
 }
 
 void Skeleton::update(float deltaTime)
 {
+	if (m_health > 0)
+	{
+	}
 }
 
 void Skeleton::draw(sf::RenderWindow& window)
 {
-	window.draw(m_sprite);
-	window.draw(m_outline);
+	if (m_health > 0)
+	{
+		window.draw(m_sprite);
+		window.draw(m_outline);
+		window.draw(m_healthText);
+	}
+}
+
+void Skeleton::setHealth(int health)
+{
+	m_health = health;
+	m_healthText.setString(std::to_string(m_health));
 }

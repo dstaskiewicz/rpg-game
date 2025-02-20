@@ -15,9 +15,18 @@ public:
 
 	sf::Sprite m_sprite;
 
+	void setHealth(int health);
+	inline const int& getHealth() const { return m_health; }
+
+
+
 private:
 	sf::Texture m_texture;
 	sf::RectangleShape m_outline;
 	sf::Vector2i m_size;
+
+	int m_health;
+	sf::Font m_healthFont;
+	sf::Text m_healthText;
 };
 
