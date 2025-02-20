@@ -5,6 +5,7 @@
 
 #include "Player.h"
 #include "Skeleton.h"
+#include "Stats.h"
 
 
 
@@ -16,7 +17,9 @@ int main()
 	settings.antiAliasingLevel = 8;
 	sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "RPG Game", sf::State::Windowed, settings);
 	//window.setVerticalSyncEnabled(true);
-	window.setFramerateLimit(360);
+	window.setFramerateLimit(60);
+
+	
 
 
 	Player player;
@@ -25,8 +28,13 @@ int main()
 	Skeleton skeleton;
 	skeleton.initialize();
 
+	Stats stats;
+	stats.initialize();
+
 	sf::Clock clock;
 	sf::Time deltaTime;
+
+
 
 	// ---------------------------------- INITIALIZE --------------------------------------
 	// 
@@ -34,6 +42,9 @@ int main()
 	
 	player.load();
 	skeleton.load();
+	stats.load();
+
+	
 
 	// ----------------------------------- LOAD --------------------------------
 	while (window.isOpen())
@@ -42,8 +53,9 @@ int main()
 		// ----------------------------------- UPDATE -------------------------------
 
 		deltaTime = clock.restart();
-		std::cout << deltaTime.asMilliseconds() << std::endl;
-
+		//std::cout << deltaTime.asMilliseconds() << std::endl;
+		//std::cout << "FPS: " << 1000 / deltaTime.asMilliseconds() << std::endl;
+		
 
 		while (const std::optional event = window.pollEvent())
 		{
@@ -51,8 +63,10 @@ int main()
 				window.close();
 		}
 
-		skeleton.update(deltaTime.asMilliseconds());
-		player.update(skeleton, deltaTime.asMilliseconds());
+		float deltaTimeAsMs = deltaTime.asMilliseconds();
+		skeleton.update(deltaTimeAsMs);
+		player.update(skeleton, deltaTimeAsMs);
+		stats.update(deltaTime.asMicroseconds());
 
 		// close with Escape
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
@@ -65,6 +79,7 @@ int main()
 
 		skeleton.draw(window);
 		player.draw(window);
+		stats.draw(window);
 
 		window.display();
 		// ------------------------------------- DRAW -------------------------------------

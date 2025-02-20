@@ -8,6 +8,7 @@ class Player
 {
 public:
 	Player();
+	~Player();
 
 	void initialize();
 	void load();

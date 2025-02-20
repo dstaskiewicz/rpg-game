@@ -2,22 +2,22 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-class Skeleton
+class Stats
 {
 public:
-	Skeleton();
-	~Skeleton();
+	Stats();
+	~Stats();
+	
 
 	void initialize();
 	void load();
 	void update(float deltaTime);
 	void draw(sf::RenderWindow& window);
-
-	sf::Sprite m_sprite;
-
 private:
-	sf::Texture m_texture;
-	sf::RectangleShape m_outline;
-	sf::Vector2i m_size;
+
+	sf::Font m_framerateFont;
+	sf::Text m_framerateText;
+
+	float m_framerateTimer;
 };
 

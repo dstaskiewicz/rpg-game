@@ -1,7 +1,11 @@
 #include "Player.h"
 
 
-Player::Player() : m_sprite(m_texture)
+Player::Player() : m_sprite(m_texture), m_moveSpeed{ 0 }, m_bulletSpeed{ 0 }
+{
+}
+
+Player::~Player()
 {
 }
 

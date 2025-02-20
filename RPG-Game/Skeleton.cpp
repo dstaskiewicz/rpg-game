@@ -1,6 +1,12 @@
 #include "Skeleton.h"
 
-Skeleton::Skeleton() : m_sprite(m_texture) {}
+Skeleton::Skeleton() : m_sprite(m_texture) 
+{
+}
+
+Skeleton::~Skeleton()
+{
+}
 
 void Skeleton::initialize()
 {
