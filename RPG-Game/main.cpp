@@ -3,6 +3,7 @@
 #include <vector>
 #include <math.h>
 
+#include "Map.h"
 #include "Player.h"
 #include "Skeleton.h"
 #include "Stats.h"
@@ -19,35 +20,33 @@ int main()
 	//window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
 
-	
-
-
-	Player player;
-	player.initialize();
-
-	Skeleton skeleton;
-	skeleton.initialize();
-
-	Stats stats;
-	stats.initialize();
 
 	sf::Clock clock;
 	sf::Time deltaTime;
 
-	sf::Vector2i mousePosition; 
+	sf::Vector2i mousePosition;
 	float deltaTimeAsMs;
+	
 
+	Map map;
+	Player player;
+	Skeleton skeleton;
+	Stats stats;
+
+	map.initialize();
+	player.initialize();
+	skeleton.initialize();
+	stats.initialize();
 
 
 	// ---------------------------------- INITIALIZE --------------------------------------
 	// 
-	// -------------------------------------- LOAD ----------------------------------------
+	// ----------------------------------- LOAD ----------------------------------------
 	
+	map.load();
 	player.load();
 	skeleton.load();
 	stats.load();
-
-	
 
 	// ----------------------------------- LOAD --------------------------------
 	while (window.isOpen())
@@ -56,8 +55,8 @@ int main()
 		// ----------------------------------- UPDATE -------------------------------
 
 		deltaTime = clock.restart();
-		//std::cout << deltaTime.asMilliseconds() << std::endl;
-		//std::cout << "FPS: " << 1000 / deltaTime.asMilliseconds() << std::endl;
+		mousePosition = sf::Mouse::getPosition(window);
+		deltaTimeAsMs = deltaTime.asMilliseconds();
 		
 
 		while (const std::optional event = window.pollEvent())
@@ -65,24 +64,28 @@ int main()
 			if (event->is<sf::Event::Closed>())
 				window.close();
 		}
-		mousePosition = sf::Mouse::getPosition(window);
-		deltaTimeAsMs = deltaTime.asMilliseconds();
-		skeleton.update(deltaTimeAsMs);
-		player.update(skeleton, deltaTimeAsMs, mousePosition);
-		stats.update(deltaTime.asMicroseconds());
 
 		// close with Escape
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
 			window.close();
+
+		map.update(deltaTimeAsMs);
+		skeleton.update(deltaTimeAsMs);
+		player.update(skeleton, deltaTimeAsMs, mousePosition);
+		stats.update(deltaTime.asMicroseconds());
+
+
 
 		// ---------------------------------- UPDATE --------------------------------------
 		//
 		// ----------------------------------- DRAW ---------------------------------------
 		window.clear(sf::Color::Black);
 
+		map.draw(window);
 		skeleton.draw(window);
 		player.draw(window);
 		stats.draw(window);
+
 
 		window.display();
 		// ------------------------------------- DRAW -------------------------------------

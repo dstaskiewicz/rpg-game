@@ -13,15 +13,16 @@ public:
 	void update(float deltaTime);
 	void draw(sf::RenderWindow& window);
 
-	sf::Sprite m_sprite;
 
 	void setHealth(int health);
 	inline const int& getHealth() const { return m_health; }
 
+	inline const sf::FloatRect& getGlobalBounds() { return m_sprite.getGlobalBounds(); }
 
 
 private:
 	sf::Texture m_texture;
+	sf::Sprite m_sprite;
 	sf::RectangleShape m_outline;
 	sf::Vector2i m_size;
 

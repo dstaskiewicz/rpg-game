@@ -43,8 +43,7 @@ void Skeleton::load()
 
 	int XIndex = 0;
 	int YIndex = 2;
-	m_sprite.setTextureRect(sf::IntRect({ XIndex * 64, YIndex * 64 },
-		{ 64, 64 }));
+	m_sprite.setTextureRect(sf::IntRect({ XIndex * 64, YIndex * 64 }, { 64, 64 }));
 	m_sprite.setPosition({ 400, 600 });
 
 

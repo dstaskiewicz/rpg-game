@@ -1,10 +1,11 @@
 #include "Player.h"
 
 
-Player::Player() : 
-	m_sprite(m_texture), 
-	m_moveSpeed{ 0 }, 
-	m_bulletFireRate{ 500.f }
+Player::Player() :
+	m_sprite(m_texture),
+	m_moveSpeed{ 0 },
+	m_bulletFireRate{ 500.f },
+	m_bulletFireRateTimer{ 0 }
 {
 }
 
@@ -49,7 +50,6 @@ void Player::update(Skeleton& skeleton, float deltaTime, sf::Vector2i& mousePosi
 {
 	sf::Vector2f position = m_sprite.getPosition();
 
-	m_outline.setPosition(m_sprite.getPosition());
 
 	// move up with W
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
@@ -68,7 +68,7 @@ void Player::update(Skeleton& skeleton, float deltaTime, sf::Vector2i& mousePosi
 		m_sprite.setPosition(position + sf::Vector2f(1 * m_moveSpeed * deltaTime, 0));
 
 
-
+	m_outline.setPosition(position);
 
 	m_bulletFireRateTimer += deltaTime;
 
@@ -86,7 +86,7 @@ void Player::update(Skeleton& skeleton, float deltaTime, sf::Vector2i& mousePosi
 		m_bullets[i].update(deltaTime);
 
 		// if bullet collides with enemy, delete bullet
-		if (skeleton.getHealth() > 0 && Math::didRectsCollide(m_bullets[i].getGlobalBounds(), skeleton.m_sprite.getGlobalBounds()))
+		if (skeleton.getHealth() > 0 && Math::didRectsCollide(m_bullets[i].getGlobalBounds(), skeleton.getGlobalBounds()))
 		{
 			m_bullets.erase(m_bullets.begin() + i);
 
@@ -95,7 +95,7 @@ void Player::update(Skeleton& skeleton, float deltaTime, sf::Vector2i& mousePosi
 		}
 	}
 
-	if (Math::didRectsCollide(m_sprite.getGlobalBounds(), skeleton.m_sprite.getGlobalBounds()))
+	if (Math::didRectsCollide(m_sprite.getGlobalBounds(), skeleton.getGlobalBounds()))
 	{
 		std::cout << "Collision" << std::endl;
 	}

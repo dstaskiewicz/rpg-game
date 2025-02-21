@@ -17,10 +17,10 @@ public:
 	void draw(sf::RenderWindow& window);
 
 	
-	sf::Sprite m_sprite;
 
 private:
 
+	sf::Sprite m_sprite;
 	sf::Texture m_texture;
 	sf::RectangleShape m_outline;
 	float m_moveSpeed;
