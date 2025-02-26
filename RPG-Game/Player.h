@@ -13,7 +13,7 @@ public:
 
 	void initialize();
 	void load();
-	void update(Skeleton& skeleton, float deltaTime, sf::Vector2i& mousePosition);
+	void update(Skeleton& skeleton, double deltaTime, sf::Vector2i& mousePosition);
 	void draw(sf::RenderWindow& window);
 
 	

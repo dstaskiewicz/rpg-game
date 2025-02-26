@@ -46,26 +46,26 @@ void Player::load()
 	}
 }
 
-void Player::update(Skeleton& skeleton, float deltaTime, sf::Vector2i& mousePosition)
+void Player::update(Skeleton& skeleton, double deltaTime, sf::Vector2i& mousePosition)
 {
 	sf::Vector2f position = m_sprite.getPosition();
 
 
 	// move up with W
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
-		m_sprite.setPosition(position + sf::Vector2f(0, -1 * m_moveSpeed * deltaTime));
+		m_sprite.setPosition(position + sf::Vector2f(0, -1 * m_moveSpeed * (float)deltaTime));
 
 	// move down with S
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
-		m_sprite.setPosition(position + sf::Vector2f(0, 1 * m_moveSpeed * deltaTime));
+		m_sprite.setPosition(position + sf::Vector2f(0, 1 * m_moveSpeed * (float)deltaTime));
 
 	// move left with A
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-		m_sprite.setPosition(position + sf::Vector2f(-1 * m_moveSpeed * deltaTime, 0));
+		m_sprite.setPosition(position + sf::Vector2f(-1 * m_moveSpeed * (float)deltaTime, 0));
 
 	// move right with D
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
-		m_sprite.setPosition(position + sf::Vector2f(1 * m_moveSpeed * deltaTime, 0));
+		m_sprite.setPosition(position + sf::Vector2f(1 * m_moveSpeed * (float)deltaTime, 0));
 
 
 	m_outline.setPosition(position);

@@ -25,7 +25,7 @@ int main()
 	sf::Time deltaTime;
 
 	sf::Vector2i mousePosition;
-	float deltaTimeAsMs;
+	double deltaTimeAsMs;
 	
 
 	Map map;
@@ -84,7 +84,7 @@ int main()
 		map.draw(window);
 		skeleton.draw(window);
 		player.draw(window);
-		stats.draw(window);
+		//stats.draw(window);
 
 
 		window.display();

@@ -11,7 +11,7 @@ public:
 
 
 	void initialize(const sf::Vector2f& position, const sf::Vector2f& target);
-	void update(float deltaTime);
+	void update(double deltaTime);
 	void draw(sf::RenderWindow& window);
 
 	inline const sf::FloatRect& getGlobalBounds() { return m_rectangleShape.getGlobalBounds(); }

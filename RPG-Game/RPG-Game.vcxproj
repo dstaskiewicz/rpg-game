@@ -34,6 +34,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Skeleton.h" />
     <ClInclude Include="Stats.h" />
+    <ClInclude Include="Tile.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

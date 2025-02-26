@@ -52,7 +52,7 @@ void Skeleton::load()
 	m_healthText.setPosition(m_sprite.getPosition());
 }
 
-void Skeleton::update(float deltaTime)
+void Skeleton::update(double deltaTime)
 {
 	if (m_health > 0)
 	{

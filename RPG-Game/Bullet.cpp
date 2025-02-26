@@ -17,9 +17,9 @@ void Bullet::initialize(const sf::Vector2f& position, const sf::Vector2f& target
 	m_direction = Math::normalizeVector(target - position);
 }
 
-void Bullet::update(float deltaTime)
+void Bullet::update(double deltaTime)
 {
-	m_rectangleShape.setPosition(m_rectangleShape.getPosition() + m_direction * m_speed * deltaTime);
+	m_rectangleShape.setPosition(m_rectangleShape.getPosition() + (m_direction * m_speed * float(deltaTime)));
 }
 
 void Bullet::draw(sf::RenderWindow& window)

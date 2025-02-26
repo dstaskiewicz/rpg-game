@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Tile.h"
 
 class Map
 {
@@ -16,12 +17,18 @@ public:
 
 private:
 	sf::Texture m_tilesheetTexture;
-	std::vector<sf::Sprite> m_sprites;
+	Tile* m_tiles;
+	int m_mapIDs[6] = {
+		1, 1, 1, 
+		24, 26, 29 
+	};
+	sf::Sprite* m_mapSprites[6];
 
 	const int m_tileWidth;
 	const int m_tileHeight;
 
 	int m_totalTilesX;
 	int m_totalTilesY;
+	int m_totalTiles;
 };
 

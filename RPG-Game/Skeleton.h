@@ -10,7 +10,7 @@ public:
 
 	void initialize();
 	void load();
-	void update(float deltaTime);
+	void update(double deltaTime);
 	void draw(sf::RenderWindow& window);
 
 
